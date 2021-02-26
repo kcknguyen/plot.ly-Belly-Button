@@ -20,7 +20,11 @@ var dataload = data.sample.filter(suject = subjectid === loadnameid);
     });
   
     // Slice the first 10 objects for plotting
-    data = data.slice(0, 10);
+    var a_samplevalues = dataload.map(value => value.sample_values(0,10));
+    a_samplevalues = a_samplevalues[0].map.value(value => parseFloat(a.sample_values);
+    a_samplevalues = a_samplevalues.reverse();
+    console.log(a_samplevalues);
+    //value.otu_ids.slice(0, 10));
   
     // Reverse the array due to Plotly's defaults
     data = data.reverse();
