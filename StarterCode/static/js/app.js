@@ -1,13 +1,21 @@
-// clear dropdown list
-d3.select("#selDataset").html(""); 
  // Use D3 fetch to read the JSON file
 // The data from the JSON file is arbitrarily named importedData as the argument
 d3.json("data/samples.json").then((importedData) => {
-    // console.log(importedData);
+  console.log(importedData);
     var data = importedData;
   
+    //load 
+  function init(){
+  var selector = d3.select("#selDataset");
+   var nameid = data.names;
+    nameid.forEach((id) => {
+      selector.append('option').text(id).property('value', id);
+    });
+const loadnameid = nameid[0];
+var dataload = data.sample.filter(suject = subjectid === loadnameid);
+
     // Sort the data array using the sample_value
-    data.sort(function(a, b) {
+    dataload.sort(function(a, b) {
       return parseFloat(b.sample_values) - parseFloat(a.sample_values);
     });
   
