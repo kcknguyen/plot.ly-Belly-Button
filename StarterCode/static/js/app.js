@@ -1,3 +1,5 @@
+// clear dropdown list
+d3.select("#selDataset").html(""); 
  // Use D3 fetch to read the JSON file
 // The data from the JSON file is arbitrarily named importedData as the argument
 d3.json("data/samples.json").then((importedData) => {
@@ -16,59 +18,30 @@ d3.json("data/samples.json").then((importedData) => {
     data = data.reverse();
   
     // Trace1 for the Greek Data
+    function init() {
     var trace1 = {
       x: data.map(row => row.greekSearchResults),
       y: data.map(row => row.greekName),
       text: data.map(row => row.greekName),
-      name: "Greek",
+      name: "bar",
       type: "bar",
       orientation: "h"
     };
   
     // data
-    var chartData = [trace1];
+    var barchartData = [trace1];
   
     // Apply the group bar mode to the layout
     var layout = {
       title: "Top 10 OTU",
-      margin: {
-        l: 100,
-        r: 100,
-        t: 100,
-        b: 100
-      }
-    };
-  
-    // Render the plot to the div tag with id "plot"
-    Plotly.newPlot("plot", chartData, layout);
-  });
-     
- // Use D3 to select the dropdown menu
-var dropdownMenu = d3.select("#selDataset");
-// Assign the value of the dropdown menu option to a variable
-var dataset = dropdownMenu.property("value");
+      xaxis: {
+        title: {
+            text: 'sample values'
+        }},
+    yaxis: {
+        title: {
+            text: 'otu ids'
+        }}
 
-   
-    //  Create the Traces
-    var trace1 = {
-      x: data.,
-      y: data.survival.map(val => Math.sqrt(val)),
-      type: "box",
-      name: "Cancer Survival",
-      boxpoints: "all"
     };
-  
-    // Create the data array for the plot
-    var data = [trace1];
-  
-    // Define the plot layout
-    var layout = {
-      title: "Square Root of Cancer Survival by Organ",
-      xaxis: { title: "Organ" },
-      yaxis: { title: "Square Root of Survival" }
-    };
-  
-    // Plot the chart to a div tag with id "plot"
-    Plotly.newPlot("plot", data, layout);
-  });
-  
+}});
