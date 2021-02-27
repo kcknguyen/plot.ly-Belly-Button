@@ -6,12 +6,12 @@ d3.json("data/samples.json").then((importedData) => {
 var data = importedData;
 //selector = d3.select("#selDataset");
 //var nameid = data.names;
- data.names.forEach(name => d3.select("#selDataset").append('option').text(name).attr('value', name));
+data.names.forEach(name => d3.select("#selDataset").append('option').text(name).attr('value', name));
  
 const loadnameid = data.names[0];
 var dataLoad = data.samples.filter(subject => subject.id === loadnameid);
 
- // Sort the data array using the sample_value
+ // Sort the data array using the sample value
  dataLoad.sort(function(a, b) {
    return parseFloat(b.sample_values) - parseFloat(a.sample_values);
  });
@@ -60,5 +60,29 @@ var dataLoad = data.samples.filter(subject => subject.id === loadnameid);
  //Render the plot id "bar"
  Plotly.newPlot("bar", barChartData, layout1);  
 
-
- });
+// buble chart
+var trace2 = {
+  x: aotuids[0],
+  y: asamplevalues,
+  text: aotu_labels[0],
+  mode: {
+    size: asamplevalues,
+    color: aotuids[0]
+  }
+};
+var layout2 = {
+      title: 'Top 10 OTU Bubbles',
+      showlegend: false,
+      xaxis: {
+        title: {
+          text: 'sample values'
+        }},
+      yaxis: {
+        title: {
+          text: 'otu ids'
+        }} 
+        };
+      var bubbleChartData = trace2
+    //plot bubble chart
+    Plotly.newPlot('bubble', bubbleChartData, layout2);
+      });
