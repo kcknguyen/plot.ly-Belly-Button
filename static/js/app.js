@@ -42,7 +42,7 @@ var dataLoad = data.samples.filter(subject => subject.id === loadnameid);
  };
 
  // data
- var barChartData = [trace1];
+ var barChart = [trace1];
 
  // Apply the group bar mode to the layout
  var layout1 = {
@@ -58,16 +58,18 @@ var dataLoad = data.samples.filter(subject => subject.id === loadnameid);
 
  };
  //Render the plot id "bar"
- Plotly.newPlot("bar", barChartData, layout1);  
+ Plotly.newPlot("bar", barChart, layout1);  
 
 // buble chart
 var trace2 = {
   x: aotuids[0],
   y: asamplevalues,
   text: aotu_labels[0],
-  mode: {
+  mode: 'markers',
+  marker: {
     size: asamplevalues,
-    color: aotuids[0]
+    color: aotuids[0],
+    sizemode: 'area'
   }
 };
 var layout2 = {
@@ -82,7 +84,7 @@ var layout2 = {
           text: 'otu ids'
         }} 
         };
-      var bubbleChartData = trace2
+      var bubbleChart = [trace2];
     //plot bubble chart
-    Plotly.newPlot('bubble', bubbleChartData, layout2);
+    Plotly.newPlot('bubble', bubbleChart, layout2);
       });
